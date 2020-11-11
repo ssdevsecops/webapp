@@ -1,12 +1,17 @@
 pipeline {
     agent any
-
+    triggers {
+        pollSCM('* * * * *')
+    }
     
     stages {
-        stage('ansiblerun') {
+        stage('Ansible_Apply') {
             steps {
-                // Run Maven on a Unix agent.
-                sh "ansible-playbook apply_role.yml"
+                sshagent(['ec2-user']) {
+                    sh "ansible-playbook apply_role.yml"
+ 
+                        }
+                
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
