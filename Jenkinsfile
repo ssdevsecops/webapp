@@ -3,7 +3,7 @@ pipeline {
 
     
     stages {
-        stage('Build') {
+        stage('ansiblerun') {
             steps {
                 // Run Maven on a Unix agent.
                 sh "ansible-playbook apply_role.yml"
