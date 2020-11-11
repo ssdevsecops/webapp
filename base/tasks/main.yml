@@ -1,0 +1,22 @@
+---
+- name: install and start  httpd on REDHAT Family
+  block:
+    - name: install httpd package on REDHAT Family
+      yum:
+        name: httpd
+
+    - name: start webserver 
+      service:
+        name: httpd
+        state: started 
+
+    - name: create index.html 
+      template:
+        src: /home/ec2-user/ansible_code/index.j2
+        dest: /var/www/html/index.html
+  when: ansible_os_family == "RedHat"
+
+- name: install apache2 package on Debian Family
+  yum:
+    name: apache2
+  when: ansible_os_family == "Debian"

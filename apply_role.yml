@@ -1,0 +1,7 @@
+---
+- name: applying roles
+  hosts: webapp
+  become: true
+  roles: 
+    - base
+      
