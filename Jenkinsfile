@@ -7,7 +7,7 @@ pipeline {
                 sh "ansible-playbook apply_role.yml --syntax-check"
             }
         }
-        
+
         stage('Ansible_Apply') {
             steps {
                 sshagent(['ec2-user']) {
@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-        stage('teststgae') {
+        stage('test') {
             steps {
                 sh "echo ansible run complete"
             }
